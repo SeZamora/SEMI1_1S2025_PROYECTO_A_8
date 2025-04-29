@@ -10,9 +10,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS credentials (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    site_name VARCHAR(255) NOT NULL,          -- Nombre del servicio “Gmail”
-    username VARCHAR(255) NOT NULL,           -- Usuario en ese servicio
-    password_encrypted TEXT NOT NULL,         -- Contraseña cifrada / encriptada 
+    secret_name VARCHAR(255) NOT NULL, -- Nombre del secreto de secrets manager
     note TEXT,                                -- Nota o descripción (este es opcional)
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
