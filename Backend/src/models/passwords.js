@@ -69,3 +69,20 @@ export async function getPasswords(id){
     return secrets
 
 }
+
+export async function getPasswordDetail(id) {
+    try {
+        const [secret] = await db.query('SELECT secret_name FROM credentials WHERE id = ?',[id])
+        const comando = new GetSecretValueCommand({SecretId: secret[0].secret_name})
+        const respuesta = await cliente.send(comando)
+        return {
+            id: id,
+            datos: JSON.parse(respuesta.SecretString)
+        }
+    } catch (error) {
+        return {
+            id: id,
+            error: error.message
+        }
+    }
+}

@@ -1,4 +1,4 @@
-import { getPasswords, updatePassword, deletePassword, createPassword } from "../models/passwords";
+import { getPasswords, updatePassword, deletePassword, createPassword, getPasswordDetail } from "../models/passwords";
 
 export async function getUserPasswords(req,res) {
     try {
@@ -24,7 +24,8 @@ export async function createUserPassword(req,res) {
 
 export async function updateUserPassword(req,res) {
     try {
-        const {id, site_name, user_name, password, descripcion} = req.body
+        const {id} = req.params
+        const {site_name, user_name, password, descripcion} = req.body
         const updated = await updatePassword(id,site_name,user_name,password,descripcion)
         
         return res.status(200).json({bandera:true, mensaje: updated.mensaje})
@@ -35,12 +36,24 @@ export async function updateUserPassword(req,res) {
 
 export async function deleteUserPassword(req,res){
     try {
-        const {id} = req.body
+        const {id} = req.params
 
         const deleted = await deletePassword(id)
 
         return res.status(200).json({bandera:true, mensaje: deleted.mensaje})
     } catch (error) {
         return res.status(500).json({bandera:false, mensaje: error.message})
+    }
+}
+
+
+export async function getPasswordDetails(req,res) {
+    try {
+        const {id} = req.params
+        const contrasena = await getPasswordDetail(id)
+        return res.status(200).json({bandera:true, contrasena: contrasena})
+    } catch (error) {
+        return res.status(500).json({bandera:false, mensaje: error.message})
+        
     }
 }

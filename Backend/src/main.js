@@ -2,6 +2,7 @@ import cors from 'cors'
 import express from 'express'
 import { config } from '../config/config.js'
 import filesRouter from './routes/filesRoutes.js'
+import passwordsRoutes from './routes/passwordsRoutes.js'
 
 const app = express()
 
@@ -13,6 +14,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/files', filesRouter)
+
+app.use('/credentials', passwordsRoutes)
 
 app.listen(config.port, () => {
   return console.log("Server is running on port " + config.port)
