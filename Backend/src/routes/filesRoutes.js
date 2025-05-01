@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createFile, deleteFile, getAllFiles, getFilesById, updateFile } from "../controllers/files";
+import { createFile, deleteFile, getAllFiles, getFilesById, updateFile } from "../controllers/files.js";
 
 const router = Router();
 
