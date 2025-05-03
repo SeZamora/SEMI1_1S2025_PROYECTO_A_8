@@ -1,4 +1,4 @@
-import { getPasswords, updatePassword, deletePassword, createPassword, getPasswordDetail } from "../models/passwords";
+import { createPassword, deletePassword, getPasswordDetail, getPasswords, updatePassword } from "../models/passwords.js";
 
 export async function getUserPasswords(req,res) {
     try {
